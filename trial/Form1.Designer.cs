@@ -49,9 +49,15 @@
             textBox4 = new TextBox();
             textBox5 = new TextBox();
             button6 = new Button();
+            comboBox2 = new ComboBox();
+            pictureBox1 = new PictureBox();
+            label5 = new Label();
+            label6 = new Label();
+            label7 = new Label();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // dataGridView1
@@ -231,21 +237,21 @@
             // 
             // textBox4
             // 
-            textBox4.Location = new Point(41, 219);
+            textBox4.Location = new Point(96, 219);
             textBox4.Name = "textBox4";
-            textBox4.Size = new Size(100, 23);
+            textBox4.Size = new Size(200, 23);
             textBox4.TabIndex = 16;
             // 
             // textBox5
             // 
-            textBox5.Location = new Point(162, 219);
+            textBox5.Location = new Point(96, 248);
             textBox5.Name = "textBox5";
-            textBox5.Size = new Size(100, 23);
+            textBox5.Size = new Size(200, 23);
             textBox5.TabIndex = 17;
             // 
             // button6
             // 
-            button6.Location = new Point(139, 268);
+            button6.Location = new Point(30, 344);
             button6.Name = "button6";
             button6.Size = new Size(75, 23);
             button6.TabIndex = 18;
@@ -253,11 +259,59 @@
             button6.UseVisualStyleBackColor = true;
             button6.Click += button6_Click;
             // 
+            // comboBox2
+            // 
+            comboBox2.FormattingEnabled = true;
+            comboBox2.Location = new Point(96, 299);
+            comboBox2.Name = "comboBox2";
+            comboBox2.Size = new Size(200, 23);
+            comboBox2.TabIndex = 19;
+            // 
+            // pictureBox1
+            // 
+            pictureBox1.BackColor = Color.FromArgb(192, 255, 255);
+            pictureBox1.Location = new Point(12, 208);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(305, 168);
+            pictureBox1.TabIndex = 20;
+            pictureBox1.TabStop = false;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Location = new Point(28, 222);
+            label5.Name = "label5";
+            label5.Size = new Size(62, 15);
+            label5.TabIndex = 21;
+            label5.Text = "user name";
+            // 
+            // label6
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(30, 251);
+            label6.Name = "label6";
+            label6.Size = new Size(57, 15);
+            label6.TabIndex = 22;
+            label6.Text = "password";
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(37, 302);
+            label7.Name = "label7";
+            label7.Size = new Size(50, 15);
+            label7.TabIndex = 23;
+            label7.Text = "position";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(879, 329);
+            ClientSize = new Size(879, 379);
+            Controls.Add(label7);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(comboBox2);
             Controls.Add(button6);
             Controls.Add(textBox5);
             Controls.Add(textBox4);
@@ -277,11 +331,13 @@
             Controls.Add(button2);
             Controls.Add(button1);
             Controls.Add(dataGridView1);
+            Controls.Add(pictureBox1);
             Name = "Form1";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView2).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView3).EndInit();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -307,5 +363,10 @@
         private TextBox textBox4;
         private TextBox textBox5;
         private Button button6;
+        private ComboBox comboBox2;
+        private PictureBox pictureBox1;
+        private Label label5;
+        private Label label6;
+        private Label label7;
     }
 }

@@ -15,6 +15,7 @@ namespace trial
         {
             InitializeComponent();
             lb();
+            log();
         }
 
         private void button1_Click(object sender, EventArgs e)
@@ -351,12 +352,42 @@ namespace trial
             }
         }
 
+
+
+
         private void button6_Click(object sender, EventArgs e)
         {
             login();
         }
 
 
+        public void log()
+        {
+            SqlConnection sqlc = new SqlConnection(conn);
+            try
+            {
+                string st = "SELECT type FROM logn";
+                SqlCommand cmd1 = new SqlCommand(st, sqlc);
+                cmd1.CommandText = st;
+                sqlc.Open();
+                SqlDataReader drd1 = cmd1.ExecuteReader();
+                while (drd1.Read())
+                {
+                    comboBox2.Items.Add(drd1["type"].ToString());
+
+                  
+                }
+            }
+            catch
+            {
+                MessageBox.Show("Error ");
+            }
+
+            finally
+            {
+                sqlc.Close();
+            }
+        }
         public void login()
         {
             using (SqlConnection connection = new SqlConnection(conn))
@@ -365,7 +396,7 @@ namespace trial
 
                 try
                 {
-                 
+
 
                     if (string.IsNullOrEmpty(textBox4.Text) ||
                                 string.IsNullOrEmpty(textBox5.Text))
@@ -380,22 +411,14 @@ namespace trial
                             MessageBox.Show(" Enter your password ");
                         }
                     }
-                    else ///if (!string.IsNullOrEmpty(textBox1_username.Text) ||
-                        // !string.IsNullOrEmpty(textBox2_password.Text))
+                    else 
                     {
 
                         // Open the connection
-
-
-                       
-
-                        //   uc.uid = "SELECT * FROM users WHERE user_id = '1'";
-                        //     MessageBox.Show(uc.uid);
                         connection.Open();
 
-                        // string quer = "SELECT * FROM users WHERE user_name = '" + txtuser + "' AND password = ' " + txtpass + "'";
 
-                        string quer = "  SELECT user_name ,password , user_type FROM users WHERE user_name = '" +textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
+                        string quer = "  SELECT username ,password FROM logn WHERE username = '" + textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
 
                         SqlCommand command = new SqlCommand();
                         command = new SqlCommand(quer, connection);
@@ -403,64 +426,34 @@ namespace trial
                         command.ExecuteNonQuery();
 
 
-                        string quer1 = "  SELECT user_type FROM users WHERE user_name = '" + textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
+                        //                 string quer1 = "  SELECT type FROM logn WHERE username =  '" + textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
+                        string quer1 = "SELECT type FROM logn";
                         SqlCommand command1 = new SqlCommand();
-                         command1 = new SqlCommand(quer1, connection);
-                         SqlDataReader reader1 = command1.ExecuteReader();
+                        command1 = new SqlCommand(quer1, connection);
+                        SqlDataReader reader1 = command1.ExecuteReader();
                         command1.ExecuteNonQuery();
-                        string n = " " + reader[2];
 
+                        string r = " " + reader1;
                         if (reader.Read())
                         {
-                           
-                            if (reader1.Read().Equals("manager"))
+
+                            if (r == ("manager"))
                             {
                                 MessageBox.Show("MANAGER");
                             }
-                            else if (reader1.Read().Equals("cashier"))
+                            else if (r == ("cashier"))
                             {
                                 MessageBox.Show("CASHIER");
-                              
-                                //     hm1.Show();
-                                //     this.Hide();
+
+
                             }
 
-                            //   }
-                            //    else
-                            //     {
-                            //        MessageBox.Show(" user name or password incorect");
-                            //     }
-
+                    
                         }
                         else
                         {
                             MessageBox.Show(" user name or password incorect");
-                        }
-
-
-
-                        /*
-                                              string staff = ("SELECT user_type  FROM user where user_type = admin");
-                                               SqlCommand command1 = new SqlCommand();
-                                               command1 = new SqlCommand(staff);
-                                               SqlDataReader reader1 = command1.ExecuteReader();
-
-
-
-                                               string staffs = ("SELECT user_type  FROM user where user_type = cashier");
-                                               SqlCommand command2 = new SqlCommand();
-                                               command1 = new SqlCommand(staffs);
-                                               SqlDataReader reader2 = command1.ExecuteReader();
-
-                                           */
-
-
-                        // else if (reader.Read() && reader2.Read())
-                        //  {
-                        //       Home_window hm1 = new Home_window();
-                        //       this.Hide();
-                        //}
-                        //   } // using connection
+                        }      
                     }
 
 
@@ -486,7 +479,7 @@ namespace trial
 
         }
 
-        
+
 
 
 
