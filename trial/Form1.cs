@@ -432,16 +432,16 @@ namespace trial
                         command1 = new SqlCommand(quer1, connection);
                         SqlDataReader reader1 = command1.ExecuteReader();
                         command1.ExecuteNonQuery();
+                         
 
-                        string r = " " + reader1;
                         if (reader.Read())
                         {
 
-                            if (r == ("manager"))
+                            if (reader1.Read().Equals("manager"))
                             {
                                 MessageBox.Show("MANAGER");
                             }
-                            else if (r == ("cashier"))
+                            else if (reader1.Read().Equals("cashier"))
                             {
                                 MessageBox.Show("CASHIER");
 
