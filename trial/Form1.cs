@@ -179,6 +179,7 @@ namespace trial
 
 
                     string inn = ("INSERT INTO arvhivetable(id, name, netdate)SELECT* FROM NET WHERE id = '" + Convert.ToInt32(textBox2.Text) + "'");
+                   
                     SqlCommand command = new SqlCommand(inn, cnn);
 
                     command.ExecuteNonQuery();
@@ -421,28 +422,41 @@ namespace trial
                         connection.Open();
 
 
-                        string quer = "  SELECT username ,password ,type FROM logn WHERE username = '" + un + "'  AND password =  '" + pass + "' ";
+                        string quer = "  SELECT username ,password ,type , logid FROM logn WHERE username = '" + un + "'  AND password =  '" + pass + "' ";
 
                         SqlCommand command;
                         command = new SqlCommand(quer, connection);
                         SqlDataReader reader = command.ExecuteReader();
                        
 
-                      
-           
-
 
                         if (reader.Read())
                         {
                             MessageBox.Show(" log in succesfully ");
 
+
                             if (reader[2].Equals("manager"))
-                            {
+                            {                     
+
                                 MessageBox.Show("MANAGER");
                             }
                             else if (reader[2].Equals("cashier"))
                             {
+
+
                                 MessageBox.Show("CASHIER");
+
+
+                                string inn = "insert into logs(logid, user_type, user_name, logdate) values(@logid , @user_type, @ user_name, @logdate)";
+
+                                SqlCommand co = new SqlCommand(inn, connection);
+                                co.Parameters.AddWithValue("@logid", reader[3].ToString());
+                                co.Parameters.AddWithValue("@user_type", reader[2].ToString());
+                                co.Parameters.AddWithValue("@user_name", reader[0].ToString());
+                                co.Parameters.AddWithValue("@logdate", DateTime.Now.ToString("dd/MM/yyyy"));
+
+
+                                co.ExecuteNonQuery();
                             }
 
 
