@@ -414,39 +414,35 @@ namespace trial
                     else 
                     {
 
+                        string un  = textBox4.Text;
+                        string pass = textBox5.Text;
+
                         // Open the connection
                         connection.Open();
 
 
-                        string quer = "  SELECT username ,password FROM logn WHERE username = '" + textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
+                        string quer = "  SELECT username ,password ,type FROM logn WHERE username = '" + un + "'  AND password =  '" + pass + "' ";
 
                         SqlCommand command;
                         command = new SqlCommand(quer, connection);
                         SqlDataReader reader = command.ExecuteReader();
-                        command.ExecuteNonQuery();
+                       
 
-
-                        string quer1 = "  SELECT type FROM logn WHERE username =  '" + textBox4.Text + "'  AND password =  '" + textBox5.Text + "' ";
-                        // string quer1 = "SELECT type FROM logn";
-                        SqlCommand command1;
-                        command1 = new SqlCommand(quer1, connection);
-                        SqlDataReader reader1 = command1.ExecuteReader();
-                        command1.ExecuteNonQuery();
+                      
+           
 
 
                         if (reader.Read())
                         {
                             MessageBox.Show(" log in succesfully ");
 
-                            if (reader.Read().Equals("manager"))
+                            if (reader[2].Equals("manager"))
                             {
                                 MessageBox.Show("MANAGER");
                             }
-                            else if (reader.Read().Equals("cashier"))
+                            else if (reader[2].Equals("cashier"))
                             {
                                 MessageBox.Show("CASHIER");
-
-
                             }
 
 
