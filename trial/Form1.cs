@@ -134,10 +134,6 @@ namespace trial
                 }
 
 
-
-
-
-
             }
             catch
             {
@@ -431,7 +427,26 @@ namespace trial
 
 
                         if (reader.Read())
+
+                        /*
+                         
+                                     string inn = "insert into logs(logid, user_type, user_name, logdate) values(@logid , @user_type, @ user_name, @logdate)";
+
+                                     SqlCommand co = new SqlCommand(inn, connection);
+                                     co.Parameters.AddWithValue("@logid", reader[3].ToString());
+                                     co.Parameters.AddWithValue("@user_type", reader[2].ToString());
+                                     co.Parameters.AddWithValue("@user_name", reader[0].ToString());
+                                     co.Parameters.AddWithValue("@logdate", DateTime.Now.ToString("dd/MM/yyyy"));
+
+
+                                     co.ExecuteNonQuery();
+                         */
+
                         {
+                            calcu c = new calcu();
+                            c.Show();
+                            
+
                             MessageBox.Show(" log in succesfully ");
 
 
@@ -439,6 +454,8 @@ namespace trial
                             {                     
 
                                 MessageBox.Show("MANAGER");
+
+
                             }
                             else if (reader[2].Equals("cashier"))
                             {
@@ -447,16 +464,6 @@ namespace trial
                                 MessageBox.Show("CASHIER");
 
 
-                                string inn = "insert into logs(logid, user_type, user_name, logdate) values(@logid , @user_type, @ user_name, @logdate)";
-
-                                SqlCommand co = new SqlCommand(inn, connection);
-                                co.Parameters.AddWithValue("@logid", reader[3].ToString());
-                                co.Parameters.AddWithValue("@user_type", reader[2].ToString());
-                                co.Parameters.AddWithValue("@user_name", reader[0].ToString());
-                                co.Parameters.AddWithValue("@logdate", DateTime.Now.ToString("dd/MM/yyyy"));
-
-
-                                co.ExecuteNonQuery();
                             }
 
 
