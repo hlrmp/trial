@@ -265,6 +265,32 @@ namespace trial
             search();
         }
 
+
+  public void search() // search method begin
+        {
+            SqlConnection cn = new SqlConnection(ConnectionClass.conn);
+                                     
+            cn.Open();
+            string sch = txtSearch.Text;
+
+            string query = "Select *  from Customers where First_Name LIKE '" + sch + '%' + "'   ";
+
+            SqlDataAdapter adapt = new SqlDataAdapter(query, cn);
+
+                    SqlCommand command = new SqlCommand();
+                    command.CommandText = query;
+                    command.Parameters.Clear();
+
+                    DataTable table = new DataTable();
+                    adapt.Fill(table);
+
+                    dataGridView1.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    dataGridView1.DataSource = table;
+
+
+            cn.Close();
+
+        }  // search method end
         public void search()
         {
             using (SqlConnection cn = new SqlConnection(conn))
